@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>جدار الولاء | اليوم الوطني السعودي 96</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#0b3d2e;
+    --green-mid:#123f2f;
+    --green-soft:#e8f2ec;
+    --gold:#c8a24d;
+    --gold-light:#e6cf94;
+    --cream:#faf6ea;
+    --ink:#0b3d2e;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Tajawal',sans-serif;
+    background:var(--green-deep);
+    color:var(--ink);
+    min-height:100vh;
+  }
+  .hero{
+    position:relative;
+    width:100%;
+    height:0;
+    padding-top:17.16%; /* 287/1672 aspect ratio, works on all browsers */
+    background-image:url('assets/wall-hero.png');
+    background-size:cover;
+    background-position:center;
+  }
+  .hero::after{
+    content:"";
+    position:absolute;
+    inset:0;
+    background:linear-gradient(to bottom, rgba(11,61,46,0) 55%, var(--green-deep) 100%);
+  }
+  main{
+    max-width:1100px;
+    margin:0 auto;
+    padding:22px 18px 70px;
+  }
+  .stats{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    color:var(--gold-light);
+    font-weight:700;
+    font-size:14px;
+    margin-bottom:22px;
+  }
+  .stats .line{width:40px;height:1px;background:var(--gold);opacity:.6;}
+  .grid{
+    display:grid;
+    grid-template-columns:repeat(auto-fill, minmax(230px,1fr));
+    gap:16px;
+  }
+  .entry{
+    background:var(--cream);
+    border-radius:16px;
+    padding:16px 16px 14px;
+    box-shadow:0 8px 20px rgba(0,0,0,.18);
+    position:relative;
+    animation:fade .35s ease both;
+  }
+  @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
+  .entry-top{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    margin-bottom:10px;
+  }
+  .avatar{
+    width:34px;height:34px;border-radius:50%;
+    display:flex;align-items:center;justify-content:center;
+    background:var(--green-deep);
+    color:var(--gold-light);
+    font-family:'Almarai',sans-serif;
+    font-weight:800;
+    font-size:15px;
+  }
+  .heart{
+    color:var(--gold);
+    font-size:17px;
+    opacity:.8;
+    cursor:default;
+    user-select:none;
+  }
+  .name{
+    font-family:'Almarai',sans-serif;
+    font-weight:700;
+    font-size:14.5px;
+    color:var(--green-deep);
+    margin:0 0 4px;
+  }
+  .message{
+    font-size:13.5px;
+    color:#2c4c40;
+    line-height:1.7;
+    margin:0;
+    word-break:break-word;
+  }
+  .empty, .loading{
+    text-align:center;
+    color:var(--gold-light);
+    padding:40px 10px;
+    font-size:14.5px;
+    grid-column:1/-1;
+  }
+  .fab{
+    position:fixed;
+    bottom:22px;
+    left:50%;
+    transform:translateX(-50%);
+    background:var(--green-deep);
+    color:var(--gold-light);
+    border:1.5px solid var(--gold);
+    border-radius:999px;
+    padding:13px 26px;
+    font-family:'Almarai',sans-serif;
+    font-weight:700;
+    font-size:14.5px;
+    text-decoration:none;
+    box-shadow:0 8px 22px rgba(0,0,0,.35);
+  }
+  footer{
+    text-align:center;
+    color:var(--gold-light);
+    opacity:.7;
+    font-size:11px;
+    letter-spacing:1px;
+    padding:20px 0 90px;
+  }
+</style>
+</head>
+<body>
+  <div class="hero"></div>
+  <main>
+    <div class="stats"><span class="line"></span><span id="countLabel">جاري تحميل التهنئات...</span><span class="line"></span></div>
+    <div class="grid" id="grid">
+      <div class="loading">جاري تحميل جدار الولاء...</div>
+    </div>
+  </main>
+  <a class="fab" href="index.html">✦ أضف تهنئتك</a>
+  <footer>SAUDI ARABIA · A GREATER TOMORROW</footer>
+
+<script>
+// ضع نفس رابط تطبيق Google Apps Script المستخدم في index.html
+const CONFIG = {
+  SHEET_API_URL: "https://script.google.com/macros/s/AKfycbyCuWfDQVQdl1c02Uqsk8PlluEAbRpWtztf43LOlwj0ZDd1uNiQjhNJgrNi1RV_PSmA/exec"
+};
+
+const grid = document.getElementById('grid');
+const countLabel = document.getElementById('countLabel');
+
+function initials(name){
+  return (name || '؟').trim().charAt(0);
+}
+
+function renderEntries(entries){
+  if(!entries.length){
+    grid.innerHTML = '<div class="empty">لا توجد تهنئات بعد — كن أول من يكتب على جدار الولاء ✦</div>';
+    countLabel.textContent = 'جدار الولاء بانتظار أول تهنئة';
+    return;
+  }
+  countLabel.textContent = `${entries.length} تهنئة على جدار الولاء`;
+  grid.innerHTML = entries.map(e => `
+    <div class="entry">
+      <div class="entry-top">
+        <div class="avatar">${initials(e.name)}</div>
+        <div class="heart">♥</div>
+      </div>
+      <p class="name">${escapeHtml(e.name)}</p>
+      <p class="message">${escapeHtml(e.message)}</p>
+    </div>
+  `).join('');
+}
+
+function escapeHtml(str){
+  return (str || '').replace(/[&<>"']/g, c => ({
+    '&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'
+  }[c]));
+}
+
+async function loadEntries(){
+  if(CONFIG.SHEET_API_URL.includes('PASTE_YOUR')){
+    grid.innerHTML = '<div class="empty">لم يتم ربط الصفحة بجوجل شيت بعد — راجع ملف SETUP.md</div>';
+    countLabel.textContent = '';
+    return;
+  }
+  try{
+    const res = await fetch(CONFIG.SHEET_API_URL);
+    const data = await res.json();
+    renderEntries(Array.isArray(data) ? data : []);
+  }catch(err){
+    grid.innerHTML = '<div class="empty">تعذر تحميل جدار الولاء، تحقق من الاتصال وحاول مرة أخرى.</div>';
+    countLabel.textContent = '';
+  }
+}
+
+loadEntries();
+</script>
+</body>
+</html>

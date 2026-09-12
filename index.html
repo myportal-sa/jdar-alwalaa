@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>عِزَّنا بِطُموحِنا | جدار الولاء</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Almarai:wght@400;700;800&family=Tajawal:wght@400;500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --green-deep:#0b3d2e;
+    --green-mid:#12503c;
+    --gold:#c8a24d;
+    --gold-light:#e6cf94;
+    --cream:#faf6ea;
+    --cream-2:#f1ead9;
+    --ink:#0b3d2e;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    font-family:'Tajawal',sans-serif;
+    background:var(--green-deep);
+    color:var(--ink);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+  }
+  .frame{
+    position:relative;
+    width:100%;
+    max-width:560px;
+    min-height:100vh;
+    background-image:url('assets/home-bg.png');
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:9% 8% 6%;
+  }
+  .badge{
+    margin-top:22%;
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    background:var(--green-deep);
+    color:var(--gold-light);
+    border:1px solid var(--gold);
+    border-radius:999px;
+    padding:7px 20px;
+    font-size:13px;
+    font-weight:700;
+    letter-spacing:.3px;
+  }
+  h1.hero-title{
+    font-family:'Almarai',sans-serif;
+    font-weight:800;
+    font-size:clamp(28px,7vw,40px);
+    color:var(--green-deep);
+    margin:48px 0 4px;
+    text-align:center;
+    line-height:1.25;
+  }
+  h2.wall-title{
+    font-family:'Almarai',sans-serif;
+    font-weight:800;
+    font-size:clamp(22px,6vw,30px);
+    color:var(--green-deep);
+    margin:20px 0 6px;
+    text-align:center;
+  }
+  .wall-title span{color:var(--gold);}
+  p.tagline{
+    text-align:center;
+    color:var(--green-mid);
+    font-size:14.5px;
+    max-width:340px;
+    margin:0 0 22px;
+    line-height:1.8;
+  }
+  .card{
+    width:100%;
+    max-width:400px;
+    background:var(--cream);
+    border-radius:22px;
+    box-shadow:0 14px 32px rgba(11,61,46,.28);
+    padding:26px 22px 24px;
+  }
+  .card-head{
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:10px;
+    margin-bottom:20px;
+  }
+  .card-head .line{flex:1;height:1px;background:var(--gold);opacity:.6;}
+  .card-head span{
+    font-family:'Almarai',sans-serif;
+    font-weight:700;
+    color:var(--green-deep);
+    font-size:17px;
+    white-space:nowrap;
+  }
+  label{
+    display:flex;
+    align-items:center;
+    gap:6px;
+    font-weight:700;
+    font-size:14px;
+    color:var(--green-deep);
+    margin-bottom:7px;
+  }
+  .field{margin-bottom:16px;}
+  input[type=text], textarea{
+    width:100%;
+    border:1.5px solid var(--cream-2);
+    background:#fff;
+    border-radius:12px;
+    padding:12px 14px;
+    font-family:'Tajawal',sans-serif;
+    font-size:14.5px;
+    color:var(--ink);
+    resize:none;
+    outline:none;
+    transition:border-color .15s;
+  }
+  input[type=text]:focus, textarea:focus{border-color:var(--gold);}
+  textarea{height:110px;line-height:1.6;}
+  button.submit{
+    width:100%;
+    margin-top:6px;
+    background:var(--green-deep);
+    color:var(--gold-light);
+    border:none;
+    border-radius:999px;
+    padding:14px;
+    font-family:'Almarai',sans-serif;
+    font-weight:700;
+    font-size:15.5px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    cursor:pointer;
+    transition:transform .12s, background .15s;
+  }
+  button.submit:hover{background:var(--green-mid);}
+  button.submit:active{transform:scale(.98);}
+  button.submit:disabled{opacity:.6;cursor:default;}
+  .msg{
+    text-align:center;
+    font-size:13.5px;
+    margin-top:12px;
+    min-height:18px;
+  }
+  .msg.ok{color:#1b6b3f;font-weight:700;}
+  .msg.err{color:#b23b3b;font-weight:700;}
+  .view-link{
+    margin-top:22px;
+    color:var(--gold-light);
+    background:rgba(11,61,46,.55);
+    border:1px solid var(--gold);
+    padding:10px 22px;
+    border-radius:999px;
+    font-size:13.5px;
+    font-weight:700;
+    text-decoration:none;
+  }
+  footer{
+    margin-top:auto;
+    padding-top:24px;
+    color:var(--green-deep);
+    font-size:11px;
+    letter-spacing:1px;
+    opacity:.75;
+    text-align:center;
+  }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="badge">✦ اليوم الوطني السعودي 96</div>
+  <h1 class="hero-title">عِزَّنا بِطُموحِنا</h1>
+  <h2 class="wall-title">جدار <span>الولاء</span></h2>
+  <p class="tagline">مساحة نكتب فيها تهنئتنا ونعبر عن فخرنا بوطننا</p>
+
+  <div class="card">
+    <div class="card-head">
+      <span class="line"></span>
+      <span>✦ أضف تهنئتك ✦</span>
+      <span class="line"></span>
+    </div>
+    <form id="greetForm">
+      <div class="field">
+        <label>👤 الاسم</label>
+        <input type="text" id="name" placeholder="اكتب اسمك" maxlength="40" required>
+      </div>
+      <div class="field">
+        <label>🖋 رسالتك الوطنية</label>
+        <textarea id="message" placeholder="أكتب تهنئتك أو رسالتك للوطن..." maxlength="220" required></textarea>
+      </div>
+      <button class="submit" type="submit" id="submitBtn">➤ إضافة إلى جدار الولاء</button>
+      <div class="msg" id="formMsg"></div>
+    </form>
+  </div>
+
+  <a class="view-link" href="wall.html">مشاهدة جدار الولاء ↩</a>
+
+  <footer>SAUDI ARABIA · A GREATER TOMORROW</footer>
+</div>
+
+<script>
+// ضع رابط تطبيق Google Apps Script الخاص بك هنا بعد نشره (راجع ملف التعليمات SETUP.md)
+const CONFIG = {
+  SHEET_API_URL: "https://script.google.com/macros/s/AKfycbyCuWfDQVQdl1c02Uqsk8PlluEAbRpWtztf43LOlwj0ZDd1uNiQjhNJgrNi1RV_PSmA/exec"
+};
+
+const form = document.getElementById('greetForm');
+const btn = document.getElementById('submitBtn');
+const msg = document.getElementById('formMsg');
+
+form.addEventListener('submit', async (e) => {
+  e.preventDefault();
+  const name = document.getElementById('name').value.trim();
+  const message = document.getElementById('message').value.trim();
+  if(!name || !message){ return; }
+
+  if(CONFIG.SHEET_API_URL.includes('PASTE_YOUR')){
+    msg.textContent = 'لم يتم ربط الصفحة بجوجل شيت بعد — راجع ملف SETUP.md';
+    msg.className = 'msg err';
+    return;
+  }
+
+  btn.disabled = true;
+  btn.textContent = 'جاري الإرسال...';
+  msg.textContent = '';
+  msg.className = 'msg';
+
+  try{
+    await fetch(CONFIG.SHEET_API_URL, {
+      method: 'POST',
+      body: JSON.stringify({ name, message })
+    });
+    msg.textContent = 'تمت إضافة تهنئتك بنجاح 🎉';
+    msg.className = 'msg ok';
+    form.reset();
+    setTimeout(() => { window.location.href = 'wall.html'; }, 900);
+  }catch(err){
+    msg.textContent = 'حدث خطأ أثناء الإرسال، حاول مرة أخرى.';
+    msg.className = 'msg err';
+  }finally{
+    btn.disabled = false;
+    btn.textContent = '➤ إضافة إلى جدار الولاء';
+  }
+});
+</script>
+</body>
+</html>
