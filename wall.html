@@ -68,66 +68,46 @@
     position:relative;
     animation:fade .35s ease both;
   }
-/* دبوس واقعي للنوت */
+/* 📌 الدبوس الأحمر */
 .entry::before{
     content:"";
     position:absolute;
-    top:-14px;
+    top:-18px;
     left:50%;
-    transform:translateX(-50%) rotate(-18deg);
     width:28px;
     height:28px;
 
-    /* رأس الدبوس بشكل مجسّم */
-    background:
-        radial-gradient(
-            circle at 32% 28%,
-            #fff3c4 0%,
-            var(--gold) 12%,
-            var(--green-deep) 45%,
-            #063b2c 78%,
-            #022a20 100%
-        );
+    background:radial-gradient(
+        circle at 35% 30%,
+        #ff5a5a 0%,
+        #e60000 35%,
+        #b80000 70%,
+        #8a0000 100%
+    );
 
     border-radius:50%;
-
-    /* ظل واقعي */
-    box-shadow:
-        2px 4px 5px rgba(0,0,0,.35),
-        inset -3px -4px 5px rgba(0,0,0,.28),
-        inset 3px 3px 4px rgba(255,255,255,.25);
-
+    transform:translateX(-50%) rotate(-25deg);
     z-index:5;
 }
-
 
 /* ساق الدبوس */
 .entry::after{
     content:"";
     position:absolute;
-    top:8px;
+    top:2px;
     left:50%;
-
-    width:7px;
+    width:6px;
     height:22px;
 
-    transform:translateX(-50%) rotate(-18deg);
+    background:linear-gradient(
+        to right,
+        #777,
+        #cfcfcf,
+        #666
+    );
 
-    background:
-        linear-gradient(
-            90deg,
-            #5b5b55 0%,
-            #b8b5a9 35%,
-            #eeeeD8 50%,
-            #77766f 75%,
-            #45443f 100%
-        );
-
-    border-radius:4px;
-
-    box-shadow:
-        3px 7px 7px rgba(0,0,0,.28);
-
+    border-radius:3px;
+    transform:translateX(-50%) rotate(-25deg);
     z-index:4;
 }
   @keyframes fade{from{opacity:0;transform:translateY(6px);}to{opacity:1;transform:none;}}
